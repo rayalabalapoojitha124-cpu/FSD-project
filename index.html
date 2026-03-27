@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Membership Plans</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 250px;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #007bff;
+        }
+
+        .plans {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #fafafa;
+        }
+
+        .card:hover {
+            border-color: #007bff;
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .features {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .selected {
+            border: 2px solid #007bff;
+            background: #eaf3ff;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto 0;
+            padding: 10px 25px;
+            border: none;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .plans {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Membership Plans</h1>
+    <p class="subtitle">Choose a plan that suits your needs</p>
+
+    <form action="subscribe.php" method="POST">
+
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Enter your name" required>
+            <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="plans">
+
+            <div class="card" onclick="selectPlan(1, this)">
+                <h3>Free</h3>
+                <div class="price">₹0</div>
+                <div class="features">Basic Access</div>
+            </div>
+
+            <div class="card" onclick="selectPlan(2, this)">
+                <h3>Silver</h3>
+                <div class="price">₹199</div>
+                <div class="features">Standard Features</div>
+            </div>
+
+            <div class="card" onclick="selectPlan(3, this)">
+                <h3>Gold</h3>
+                <div class="price">₹499</div>
+                <div class="features">Premium Access</div>
+            </div>
+
+            <div class="card" onclick="selectPlan(4, this)">
+                <h3>Platinum</h3>
+                <div class="price">₹999</div>
+                <div class="features">All Features + Support</div>
+            </div>
+
+        </div>
+
+        <input type="hidden" name="tier_id" id="tier_id">
+
+        <button type="submit">Subscribe</button>
+
+    </form>
+</div>
+
+<script>
+function selectPlan(id, element) {
+    document.getElementById("tier_id").value = id;
+
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(card => card.classList.remove("selected"));
+
+    element.classList.add("selected");
+}
+</script>
+
+</body>
+</html>
